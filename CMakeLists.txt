@@ -102,7 +102,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
+  INCLUDE_DIRS include
 #  LIBRARIES floor_transparency_gazebo_plugin
 #  CATKIN_DEPENDS gazebo_dev roscpp
 #  DEPENDS system_lib
@@ -120,9 +120,24 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/floor_transparency_gazebo_plugin.cpp
-# )
+add_library(floor_transparency_gazebo_visual_plugin MODULE
+  src/floor_transparency_gazebo_visual_plugin.cpp
+)
+add_library(floor_transparency_gazebo_model_plugin MODULE
+  src/floor_transparency_gazebo_model_plugin.cpp
+)
+
+target_include_directories(floor_transparency_gazebo_visual_plugin
+  PUBLIC
+          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+          ${catkin_INCLUDE_DIRS}
+)
+
+target_include_directories(floor_transparency_gazebo_model_plugin
+  PUBLIC
+          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+          ${catkin_INCLUDE_DIRS}
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -145,9 +160,12 @@ include_directories(
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(floor_transparency_gazebo_visual_plugin
+  PUBLIC ${catkin_LIBRARIES}
+)
+target_link_libraries(floor_transparency_gazebo_model_plugin
+  PUBLIC ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##

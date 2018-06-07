@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="default">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <model name="test_box">
+      <pose>0 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.5</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <!--<box>
+              <size>1 1 1</size>
+            </box>-->
+            <sphere>
+              <radius>0.5</radius>
+            </sphere>
+          </geometry>
+          <!--<plugin name="visual_transparency" filename="libfloor_transparency_gazebo_visual_plugin.so"/>-->
+        </visual>
+      </link>
+      <plugin name="model_transparency" filename="libfloor_transparency_gazebo_model_plugin.so"/>
+    </model>
+  </world>
+</sdf>
