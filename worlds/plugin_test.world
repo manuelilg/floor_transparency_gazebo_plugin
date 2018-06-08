@@ -25,7 +25,6 @@
           </geometry>
         </collision>
         <visual name="visual_fist_link">
-          <pose>0 1.5 0 0 0 0</pose>
           <meta>
             <layer>0</layer>
           </meta>
@@ -41,7 +40,7 @@
         </visual>
       </link>
       <link name="link2">
-        <pose>-3 0 2 0 0 0</pose>
+        <pose>3 0 1.5 0 0 0</pose>
         <collision name="collision">
           <geometry>
             <box>
@@ -61,11 +60,10 @@
               <radius>0.5</radius>
             </sphere>-->
           </geometry>
-        <!--<plugin name="visual_transparency" filename="libfloor_transparency_gazebo_visual_plugin.so"/>-->
         </visual>
       </link>
       <link name="link3">
-        <pose>-3 0 1.5 0 0 0</pose>
+        <pose>3 0 3 0 0 0</pose>
         <collision name="collision">
           <geometry>
             <box>
@@ -85,9 +83,31 @@
               <radius>0.5</radius>
             </sphere>-->
           </geometry>
-        <!--<plugin name="visual_transparency" filename="libfloor_transparency_gazebo_visual_plugin.so"/>-->
         </visual>
-        <visual name="visual2_link3">
+<!--        <visual name="visual2_link3">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+                       <sphere>
+              <radius>0.5</radius>
+            </sphere>
+          </geometry>
+        </visual>-->
+      </link>
+      <link name="link4">
+        <pose>3 0 4.5 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+            <!--<sphere>
+              <radius>0.5</radius>
+            </sphere>-->
+          </geometry>
+        </collision>
+        <visual name="visual">
           <geometry>
             <box>
               <size>1 1 1</size>
@@ -96,10 +116,11 @@
               <radius>0.5</radius>
             </sphere>-->
           </geometry>
-        <!--<plugin name="visual_transparency" filename="libfloor_transparency_gazebo_visual_plugin.so"/>-->
         </visual>
       </link>
-      <plugin name="model_transparency" filename="libfloor_transparency_gazebo_model_plugin.so"/>
+      <plugin name="model_transparency" filename="libfloor_transparency_gazebo_model_plugin.so">
+        <reference_model>box_0</reference_model>
+      </plugin>
     </model>
   </world>
 </sdf>
