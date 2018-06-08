@@ -17,6 +17,8 @@ private:
   physics::ModelPtr model;
   transport::NodePtr node;
   transport::PublisherPtr visPub;
+  std::map<std::string, std::vector<std::string>> visualNames2linkNamesMap;
+//  std::map<std::string, std::string> visualNames2linkNamesMap;
 };
 
 }
