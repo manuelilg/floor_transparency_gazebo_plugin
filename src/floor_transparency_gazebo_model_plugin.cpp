@@ -74,7 +74,7 @@ void FloorTransparencyModelPlugin::onUpdateEnd()
 
     double referenceZ = std::numeric_limits<double>::infinity();
     const physics::Model_V& models = model->GetWorld()->GetModels();
-    physics::Model_V::const_iterator refModel = std::find_if(models.begin(), models.end(), [](physics::ModelPtr m) {return m->GetName() == "reference";});
+    physics::Model_V::const_iterator refModel = std::find_if(models.begin(), models.end(), [this](physics::ModelPtr m) {return m->GetName() == referenceModelName;});
     if (refModel != models.end()) {
       referenceZ = refModel->get()->GetWorldPose().pos.z;
     } else {
@@ -93,13 +93,12 @@ void FloorTransparencyModelPlugin::onUpdateEnd()
       }
     }
 
-
     for (; makeTransparent != linkVec.end(); ++makeTransparent) {
       physics::LinkPtr link = (*makeTransparent);
 
       for(std::string visualName : visualNames2linkNamesMap.at(link->GetName())) {
         msgs::Visual visualMsg = link->GetVisualMessage(link->GetScopedName() + "::" + visualName);
-        visualMsg.set_transparency(0.5);
+        visualMsg.set_transparency(1);
         this->visPub->Publish(visualMsg);
       }
     }
